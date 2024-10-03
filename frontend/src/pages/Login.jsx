@@ -15,9 +15,18 @@ const Login = () => {
         { email, password }
       );
 
-      console.log(response);
+      if (response.data.success) {
+        alert("Successfully login");
+      }
+
+      // console.log(response);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      if (error.response && !error.response.data.success) {
+        setError(error.response.data.error);
+      } else {
+        setError("server error");
+      }
     }
   };
   return (
