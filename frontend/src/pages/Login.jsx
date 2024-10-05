@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +20,15 @@ const Login = () => {
       );
 
       if (response.data.success) {
-        alert("Successfully login");
+        // alert("Successfully login");
+        login(response.data.user);
+        localStorage.setItem("token", response.data.token);
+
+        if (response.data.user.role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/employee-dashboard");
+        }
       }
 
       // console.log(response);
@@ -48,6 +60,7 @@ const Login = () => {
               placeholder="Enter Email"
               className="w-full px-3 py-2 border"
               onChange={(event) => setEmail(event.target.value)}
+              required
             ></input>
           </div>
 
@@ -60,6 +73,7 @@ const Login = () => {
               placeholder="********"
               className="w-full px-3 py-2 border"
               onChange={(e) => setPassword(e.target.value)}
+              required
             ></input>
           </div>
 
