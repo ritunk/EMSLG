@@ -1,13 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-
 const userContext = createContext();
 
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const verifyUser = async () => {
@@ -28,12 +26,14 @@ const AuthContext = ({ children }) => {
             setUser(response.data.user);
           }
         } else {
-          navigate("/login");
+          setUser(null);
         }
       } catch (error) {
         if (error.response && !error.response.data.error) {
-          navigate("/login");
+          setUser(null);
         }
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -49,7 +49,7 @@ const AuthContext = ({ children }) => {
     localStorage.removeItem("token");
   };
   return (
-    <userContext.Provider value={{ user, login, logout }}>
+    <userContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </userContext.Provider>
   );
