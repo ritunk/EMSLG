@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  axios,
+} from "react";
 
 const userContext = createContext();
 
@@ -27,6 +33,7 @@ const AuthContext = ({ children }) => {
           }
         } else {
           setUser(null);
+          setLoading(false);
         }
       } catch (error) {
         if (error.response && !error.response.data.error) {
