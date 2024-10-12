@@ -1,10 +1,6 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  axios,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+
+import axios from "axios";
 
 const userContext = createContext();
 
@@ -28,6 +24,8 @@ const AuthContext = ({ children }) => {
             }
           );
 
+          console.log(response);
+
           if (response.data.success) {
             setUser(response.data.user);
           }
@@ -36,6 +34,7 @@ const AuthContext = ({ children }) => {
           setLoading(false);
         }
       } catch (error) {
+        console.log(error);
         if (error.response && !error.response.data.error) {
           setUser(null);
         }
