@@ -9,7 +9,10 @@ const Adminsidebar = () => {
         <h3>Employee MS</h3>
       </div>
       <div>
-        <NavLink></NavLink>
+        <NavLink>
+          <FaTachometerAlt />
+          <span>Dashboard</span>
+        </NavLink>
       </div>
     </div>
   );
