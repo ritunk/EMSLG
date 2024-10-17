@@ -18,6 +18,16 @@ const Adminsidebar = () => {
           <FaUsers />
           <span>Employees</span>
         </NavLink>
+
+        <NavLink to="/admin-dashboard">
+          <FaUsers />
+          <span>Leaves</span>
+        </NavLink>
+
+        <NavLink to="/admin-dashboard">
+          <FaUsers />
+          <span>Salary</span>
+        </NavLink>
       </div>
     </div>
   );
