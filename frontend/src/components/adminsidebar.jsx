@@ -33,6 +33,21 @@ const Adminsidebar = () => {
           <FaUsers />
           <span>Department</span>
         </NavLink>
+
+        <NavLink to="/admin-dashboard">
+          <FaUsers />
+          <span>Department</span>
+        </NavLink>
+
+        <NavLink to="/admin-dashboard">
+          <FaUsers />
+          <span>Leaves</span>
+        </NavLink>
+
+        <NavLink to="/admin-dashboard">
+          <FaUsers />
+          <span>Department</span>
+        </NavLink>
       </div>
     </div>
   );
