@@ -54,7 +54,9 @@ const Adminsidebar = () => {
           <span>Department</span>
         </NavLink>
 
-        <NavLink>hi</NavLink>
+        <NavLink to="/admin-panel">hi</NavLink>
+
+        <NavLink to="/admin-panel">hi</NavLink>
       </div>
     </div>
   );
