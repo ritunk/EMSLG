@@ -43,20 +43,6 @@ const Adminsidebar = () => {
           <FaUsers />
           <span>Leaves</span>
         </NavLink>
-
-        <NavLink to="/admin-dashboard">
-          <FaUsers />
-          <span>Department</span>
-        </NavLink>
-
-        <NavLink to="/admin-dashboard">
-          <FaUsers />
-          <span>Department</span>
-        </NavLink>
-
-        <NavLink to="/admin-panel">hi</NavLink>
-
-        <NavLink to="/admin-panel">hi</NavLink>
       </div>
     </div>
   );
