@@ -8,6 +8,7 @@ import RoleBaseRoute from "./utils/RoleBaseRoute";
 import AdminSummary from "./components/AdminSummary.jsx";
 import DepartmentList from "./components/department/DepartmentList.jsx";
 import AddDepartment from "./components/department/AddDepartment.jsx";
+import EditDepartment from "./components/department/EditDepartment.jsx";
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
           ></Route>
           <Route
             path="/admin-dashboard/department/:id"
-            element={<AddDepartment />}
+            element={<EditDepartment />}
           ></Route>
         </Route>
         <Route
