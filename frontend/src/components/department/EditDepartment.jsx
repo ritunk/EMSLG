@@ -13,6 +13,8 @@ const EditDepartment = () => {
     setDepartment({ ...department, [name]: value });
   };
 
+  const check = () => {};
+
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
