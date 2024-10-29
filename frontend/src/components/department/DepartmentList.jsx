@@ -9,6 +9,22 @@ const DepartmentList = () => {
 
   const [depLoading, setDepLoading] = useState(false);
 
+  const [filterDepartment, setFilterDepartments] = useState([]);
+
+  const onDepartmentDelete = async (id) => {
+    const data = await departments.filter((dep) => dep._id !== id);
+
+    setDepartments(data);
+  };
+
+  const filterDepartments = (e) => {
+    const records = departments.filter((dep) =>
+      dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+
+    setFilterDepartments(records);
+  };
+
   useEffect(() => {
     const fetchDepartments = async () => {
       setDepLoading(true);
@@ -29,12 +45,18 @@ const DepartmentList = () => {
             _id: dep._id,
             sno: sno++,
             dep_name: dep.dep_name,
-            action: <DepartmentButtons _id={dep._id} />,
+            action: (
+              <DepartmentButtons
+                _id={dep._id}
+                onDepartmentDelete={onDepartmentDelete}
+              />
+            ),
           }));
 
           console.log(data);
 
           setDepartments(data);
+          setFilterDepartments(data);
         }
       } catch (error) {
         console.log(error);
@@ -62,6 +84,7 @@ const DepartmentList = () => {
               type="text"
               placeholder="Search By Dep Name"
               className="px-4 py-0.5 border"
+              onChange={filterDepartments}
             />
             <Link
               to="/admin-dashboard/add-department"
@@ -71,7 +94,7 @@ const DepartmentList = () => {
             </Link>
           </div>
           <div className="mt-5">
-            <DataTable columns={columns} data={departments} />
+            <DataTable columns={columns} data={filterDepartment} pagination />
           </div>
         </div>
       )}{" "}
