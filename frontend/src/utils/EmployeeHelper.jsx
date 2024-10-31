@@ -28,15 +28,18 @@ export const columns = [
   {
     name: "S No",
     selector: (row) => row.sno,
+    width: "70px",
   },
 
   {
     name: "Name",
     selector: (row) => row.name,
+    width: "130px",
   },
   {
     name: "Image",
     selector: (row) => row.profileImage,
+    width: "100px",
   },
   {
     name: "Department",
@@ -50,47 +53,29 @@ export const columns = [
   {
     name: "Action",
     selector: (row) => row.action,
+    center: true,
   },
 ];
 
 export const EmployeeButtons = ({ _id }) => {
   const navigate = useNavigate();
 
-  const handleDelete = async (_id) => {
-    const confirm = window.confirm("Do you want to delete?");
-    if (confirm) {
-      try {
-        const response = await axios.delete(
-          `http://localhost:5000/api/department/${_id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-
-        if (response.data.success) {
-          onDepartmentDelete(_id);
-        }
-      } catch (error) {
-        console.log(error);
-        if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
-        }
-      }
-    }
-  };
   return (
-    <div className="flex space-x-3">
+    <div className="flex space-x-1">
       <button
         className="px-4 py-1 bg-teal-600 text-white"
-        onClick={() => navigate(`/admin-dashboard/department/${_id}`)}
+        onClick={() => navigate(`/admin-dashboard/employees/${_id}`)}
       >
         View
       </button>
-      <button className="px-4 py-1 bg-blue-500 text-white">Edit</button>
+      <button
+        className="px-4 py-1 bg-blue-500 text-white"
+        onClick={() => navigate(`/admin-dashboard/employees/edit/${_id}`)}
+      >
+        Edit
+      </button>
       <button className="px-4 py-1 bg-green-500 text-white">Salary</button>
-      <button className="px-4 py-1 bg-Yellow-500 text-white">Leave</button>
+      <button className="px-4 py-1 bg-red-500 text-white">Leave</button>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { EmployeeButtons } from "../../utils/EmployeeHelper";
 import DataTable from "react-data-table-component";
-import { columns } from "../../utils/DepartmentHelper";
+import { columns } from "../../utils/EmployeeHelper";
 
 const List = () => {
   const [employees, setEmployees] = useState([]);
@@ -30,7 +30,11 @@ const List = () => {
             dob: new Date(emp.dob).toDateString(),
 
             profileImage: (
-              <img src={`http://localhost:5000/${emp.userId.profileImage}`} />
+              <img
+                width={40}
+                className="rounded-full"
+                src={`http://localhost:5000/public/uploads/${emp.userId.profileImage}`}
+              />
             ),
             action: <EmployeeButtons _id={emp._id} />,
           }));
@@ -76,7 +80,7 @@ const List = () => {
           </div>
 
           <div>
-            <DataTable columns={columns} data={employees} />
+            <DataTable columns={columns} data={employees} pagination />
           </div>
         </div>
       )}
