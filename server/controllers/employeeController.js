@@ -155,4 +155,37 @@ const updateEmployee = async (req, res) => {
   }
 };
 
-export { addEmployee, upload, getEmployees, getEmployee, updateEmployee };
+const fetchEmployeesByDepId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Use `find` to retrieve multiple employees by department ID
+    const employees = await Employee.find({ department: id })
+      .populate("userId")
+      .populate("department");
+
+    if (!employees || employees.length === 0) {
+      return res
+        .status(404)
+        .json({
+          success: false,
+          message: "No employees found for this department",
+        });
+    }
+
+    return res.status(200).json({ success: true, employees });
+  } catch (error) {
+    console.log("Error in fetchEmployeesByDepId:", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "fetchEmployeesByDepId server error" });
+  }
+};
+export {
+  addEmployee,
+  upload,
+  getEmployees,
+  getEmployee,
+  updateEmployee,
+  fetchEmployeesByDepId,
+};
