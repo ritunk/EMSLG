@@ -95,9 +95,17 @@ const getEmployee = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const employee = await Employee.findById({ _id: id })
+    let employee;
+
+    employee = await Employee.findById({ _id: id })
       .populate("userId", { password: 0 })
       .populate("department");
+
+    if (!employee) {
+      employee = await Employee.findOne({ userId: id })
+        .populate("userId", { password: 0 })
+        .populate("department");
+    }
 
     return res.status(200).json({ success: true, employee });
   } catch (error) {
@@ -165,12 +173,10 @@ const fetchEmployeesByDepId = async (req, res) => {
       .populate("department");
 
     if (!employees || employees.length === 0) {
-      return res
-        .status(404)
-        .json({
-          success: false,
-          message: "No employees found for this department",
-        });
+      return res.status(404).json({
+        success: false,
+        message: "No employees found for this department",
+      });
     }
 
     return res.status(200).json({ success: true, employees });

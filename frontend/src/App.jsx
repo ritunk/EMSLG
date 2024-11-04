@@ -15,6 +15,8 @@ import View from "./components/employee/View.jsx";
 import Edit from "./components/employee/Edit.jsx";
 import Addsalary from "./components/salary/Add.jsx";
 import Viewsalary from "./components/salary/View.jsx";
+import SummaryCard from "./components/EmployeeDashboard/Summary.jsx";
+import LeaveList from "./components/leave/List";
 
 function App() {
   return (
@@ -79,7 +81,17 @@ function App() {
               </RoleBaseRoute>
             </PrivateRoutes>
           }
-        ></Route>
+        >
+          <Route index element={<SummaryCard />}></Route>
+          <Route
+            path="/employee-dashboard/profile/:id"
+            element={<View />}
+          ></Route>
+          <Route
+            path="/employee-dashboard/leaves"
+            element={<LeaveList />}
+          ></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

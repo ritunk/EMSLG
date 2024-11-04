@@ -9,8 +9,10 @@ import {
   FaTachometerAlt,
 } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
+import { useAuth } from "../../context/authContext";
 
 const Sidebar = () => {
+  const { user } = useAuth();
   return (
     <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64">
       <div className="bg-teal-600 h-12 flex items-center justify-center">
@@ -30,7 +32,7 @@ const Sidebar = () => {
           <span>Dashboard</span>
         </NavLink>
         <NavLink
-          to="/employee-dashboard/profile"
+          to={`/employee-dashboard/profile/${user._id}`}
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
