@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const List = () => {
+  demo = () => {};
   return (
     <div className="text-center">
       <div className="p-6">
