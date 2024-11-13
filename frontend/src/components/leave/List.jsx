@@ -83,7 +83,7 @@ const List = () => {
               </td>
               <td className="px-6 py-3">{leave.reason}</td>
               <td className="px-6 py-3">
-                {new Date(leave.appliedDate).toLocaleDateString()}
+                {new Date(leave.appliedAt).toLocaleDateString()}
               </td>
               <td className="px-6 py-3">{leave.status}</td>
             </tr>
