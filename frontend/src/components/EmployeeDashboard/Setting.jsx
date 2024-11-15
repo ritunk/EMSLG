@@ -30,13 +30,18 @@ const Setting = () => {
       return;
     } else {
       try {
-        const response = await axios.post("/setting/change-password", setting, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await axios.put(
+          "http://localhost:5000/api/setting/change-password",
+          setting,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
 
         if (response.data.success) {
+          console.log("check");
           navigate("/admin-dashboard/employees");
           setError("");
         }
@@ -50,7 +55,7 @@ const Setting = () => {
   return (
     <div className="max-w-3xl mx-auto mt-18 bg-white p-8 rounded-md shadow-md w-96">
       <h2 className="text-2xl font-bold mb-6">Change Password</h2>
-      {/* <p className="text-red-500">(error)</p> */}
+      <p className="text-red-500">{error}</p>
 
       <form onSubmit={handleSubmit}>
         {/* Old Password */}

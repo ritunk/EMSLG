@@ -35,7 +35,7 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
         );
 
         if (response.data.success) {
-          onDepartmentDelete(_id);
+          onDepartmentDelete();
         }
       } catch (error) {
         console.log(error);
